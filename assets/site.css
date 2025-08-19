@@ -1,90 +1,613 @@
+/* =========================================================
+   LBC Brand v4 — Corporativo sobrio y actual
+   - Base clara (salmón pálido)
+   - Tipografía "chocolate"
+   - Superficies blancas con bordes sutiles
+   - Acentos: rojo / oro / teal / azul (marca)
+   ========================================================= */
+
 :root{
-  --bg:#0b1b16;
-  --card:#11261f;
-  --muted:#9fb8ad;
-  --brand:#20c997;
-  --brand-2:#0ea5a6;
-  --text:#edf7f3;
-  --text-dim:#cfe1da;
-  --shadow:0 10px 30px rgba(0,0,0,.25);
-  --radius:18px;
-  --radius-sm:12px;
-  --container:1200px;
+  /* Marca (ajusta si tienes hex oficiales) */
+  --brand-red:   #D62828;  /* Rojo */
+  --brand-gold:  #F2B705;  /* Amarillo / oro */
+  --brand-teal:  #0F766E;  /* Teal */
+  --brand-blue:  #4B84C6;  /* Azul */
+
+  /* Identidad neutra */
+  --paper:       #F2E6DC;  /* salmón pálido (fondo) */
+  --paper-2:     #F8EFE9;  /* variante más clara */
+  --surface:     #FFFFFF;  /* tarjetas / ctas */
+  --surface-2:   #FFF8F3;  /* superficies elevadas suaves */
+  --border:      #E6D6CB;  /* borde sutil */
+
+  /* Tipografía chocolate */
+  --ink:         #4E2F22;  /* principal (chocolate) */
+  --ink-strong:  #3E251B;  /* títulos */
+  --ink-dim:     #7B5E52;  /* atenuado */
+
+  /* Asignaciones de sistema */
+  --brand:       var(--brand-teal);
+  --brand-2:     var(--brand-blue);
+  --accent:      var(--brand-blue);
+  --accent-2:    var(--brand-red);
+  --gold:        var(--brand-gold);
+
+  --shadow:      0 10px 30px rgba(16, 10, 8, .10);
+  --radius:      18px;
+  --radius-sm:   12px;
+  --container:   1200px;
 }
+
+/* ===== Reset y base ===== */
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:linear-gradient(180deg,#07120f 0%, var(--bg) 35%, #0a1512 100%);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue","Noto Sans",Arial,"Apple Color Emoji","Segoe UI Emoji"}
+html,body{
+  margin:0; padding:0;
+  background:
+    radial-gradient(1000px 420px at 8% -10%, rgba(15,118,110,.08) 0%, transparent 60%),
+    radial-gradient(900px 380px at 95% -12%, rgba(75,132,198,.09) 0%, transparent 60%),
+    linear-gradient(180deg, var(--paper) 0%, var(--paper) 100%);
+  color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue","Noto Sans",Arial,"Apple Color Emoji","Segoe UI Emoji";
+}
+h1,h2,h3,h4{color:var(--ink-strong);line-height:1.25;margin:0 0 .4rem}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
+
+/* Utilitarios */
 .container{width:min(95%, var(--container));margin-inline:auto}
 .grid{display:grid;gap:20px}
-.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 1.2rem;border-radius:999px;font-weight:700;letter-spacing:.2px;box-shadow:var(--shadow);transition:transform .2s ease,opacity .2s ease,box-shadow .2s ease}
-.btn:active{transform:translateY(1px)}
-.btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#06241c}
-.btn-ghost{background:transparent;border:1px solid #214036;color:var(--text)}
-.chip{display:inline-flex;align-items:center;gap:.4rem;background:#0d221c;border:1px solid #1f3d33;color:var(--text-dim);padding:.35rem .7rem;border-radius:999px;font-size:.82rem}
 
-header.nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.5) blur(10px);background:rgba(7,18,15,.65);border-bottom:1px solid #14342b}
+/* ===== Botones ===== */
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.9rem 1.2rem;border-radius:999px;font-weight:700;letter-spacing:.2px;
+  box-shadow:var(--shadow);transition:transform .2s ease,opacity .2s ease,box-shadow .2s ease
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  color:#fff;
+}
+.btn-ghost{
+  background:transparent;border:1px solid var(--border);
+  color:var(--ink);
+}
+.btn-ghost:hover{background:var(--paper-2)}
+.chip{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:var(--paper-2);border:1px solid var(--border);color:var(--ink-dim);
+  padding:.35rem .7rem;border-radius:999px;font-size:.82rem
+}
+
+/* ===== NAV ===== */
+header.nav{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:saturate(1.1) blur(8px);
+  background:rgba(255,255,255,.75);
+  border-bottom:1px solid var(--border);
+}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
 .logo{display:flex;align-items:center;gap:.75rem;font-weight:800;letter-spacing:.2px}
 .logo img{width:40px;height:40px;border-radius:10px}
 .menu{display:flex;gap:.8rem;align-items:center}
-.menu a{padding:.6rem .9rem;border-radius:999px;color:var(--text-dim)}
-.menu a:hover{background:#0e231d;color:var(--text)}
-.menu a.active{background:#12362c;border:1px solid #1a4d40;color:var(--text)}
-.menu .cta{padding:.6rem 1rem;background:#12362c;border:1px solid #1a4d40;color:var(--text);border-radius:999px}
-.menu-toggle{display:none;border:1px solid #204037;background:#0d221c;border-radius:10px;padding:.5rem}
+.menu a{padding:.6rem .9rem;border-radius:999px;color:var(--ink-dim)}
+.menu a:hover{background:var(--paper-2);color:var(--ink)}
+.menu a.active{background:var(--paper-2);border:1px solid var(--border);color:var(--ink-strong)}
+.menu .cta{padding:.6rem 1rem;background:var(--paper-2);border:1px solid var(--border);color:var(--ink);border-radius:999px}
+.menu-toggle{display:none;border:1px solid var(--border);background:var(--paper-2);border-radius:10px;padding:.5rem}
 @media (max-width: 920px){
-  .menu{display:none;position:absolute;inset:60px 2.5% auto;flex-direction:column;background:#0c1f19;border:1px solid #14342b;border-radius:16px;padding:10px}
+  .menu{
+    display:none;position:absolute;inset:60px 2.5% auto;
+    flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:10px
+  }
   .menu.show{display:flex}
   .menu-toggle{display:inline-grid;place-items:center}
 }
 
-/* HERO / SECCIONES */
+/* ===== HERO / SECCIONES ===== */
 .hero{padding:64px 0 28px}
 .hero-wrap{display:grid;gap:26px;grid-template-columns:1.2fr .9fr;align-items:center}
 @media (max-width: 980px){.hero-wrap{grid-template-columns:1fr}}
-.hero h1{font-size:clamp(28px,4vw,44px);line-height:1.2;margin:0}
-.lead{color:var(--text-dim);font-size:1.06rem;margin:.6rem 0 1.1rem}
-.hero-card{background:radial-gradient(1200px 500px at 10% -50%,#1a5244 0%,transparent 60%),linear-gradient(180deg,#0c1f19,#0a1a15);border:1px solid #1a4035;border-radius:var(--radius);padding:22px}
+.hero h1{font-size:clamp(30px,4vw,46px)}
+.lead{color:var(--ink-dim);font-size:1.06rem;margin:.6rem 0 1.1rem}
+.hero-card{
+  background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--radius);padding:22px
+}
+
+/* ===== KPI / Stats pequeñas ===== */
 .hero-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
-.stat{background:#0f241e;border:1px solid #1a3d33;border-radius:14px;padding:14px;text-align:center}
+.stat{
+  background:var(--paper-2);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center
+}
 .stat b{display:block;font-size:1.4rem}
 
+/* ===== TRUST ===== */
 .trust{padding:10px 0 40px}
-.trust-logos{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px;opacity:.85}
-.trust-logos img{filter:grayscale(1) brightness(.9);opacity:.8;transition:.2s}
-.trust-logos img:hover{filter:grayscale(.2) brightness(1);opacity:1}
+.trust-logos{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px;opacity:.95}
+.trust-logos img{filter:grayscale(.1) brightness(.95);opacity:.95;transition:.2s}
+.trust-logos img:hover{filter:none;opacity:1}
 @media (max-width: 920px){.trust-logos{grid-template-columns:repeat(3,1fr)}}
 
+/* ===== SECCIONES ===== */
 .section{padding:36px 0}
 .section h2{font-size:clamp(22px,3vw,32px);margin:0 0 10px}
-.muted{color:var(--muted)}
+.muted{color:var(--ink-dim)}
+
+/* Tarjetas */
 .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
-.card{background:linear-gradient(180deg,#0e231d,#0b1c17);border:1px solid #173b31;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
-.card h3{margin:.2rem 0 .4rem;font-size:1.1rem}
-.card p{color:var(--text-dim);font-size:.98rem;margin:.3rem 0 .8rem}
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px;box-shadow:var(--shadow)
+}
+.card h3{margin:.2rem 0 .4rem;font-size:1.12rem}
+.card p{color:var(--ink-dim);font-size:.98rem;margin:.3rem 0 .8rem}
 .card a{font-weight:700;color:var(--brand)}
-.tag{display:inline-block;margin:.25rem .25rem 0 0;padding:.25rem .5rem;background:#0c1f19;border:1px solid #1c3f34;border-radius:8px;color:var(--text-dim);font-size:.82rem}
+.tag{
+  display:inline-block;margin:.25rem .25rem 0 0;padding:.25rem .5rem;
+  background:var(--paper-2);border:1px solid var(--border);border-radius:8px;color:var(--ink-dim);font-size:.82rem
+}
 @media (max-width: 980px){.cards{grid-template-columns:1fr}}
 
+/* Barras de evidencia */
 .bar{display:flex;gap:10px;align-items:center;margin:.8rem 0}
-.bar .bar-track{flex:1;height:10px;border-radius:999px;background:#0f231e;border:1px solid #1a3f34;overflow:hidden}
+.bar .bar-track{flex:1;height:10px;border-radius:999px;background:var(--paper-2);border:1px solid var(--border);overflow:hidden}
 .bar .bar-fill{height:100%;background:linear-gradient(90deg,var(--brand),var(--brand-2));width:0%}
 
-.testi{background:radial-gradient(900px 400px at 100% -40%,#17685540 0%,transparent 55%)}
-.quote{background:#0e231d;border:1px solid #1a3d33;border-radius:var(--radius-sm);padding:16px;display:grid;gap:6px}
-.quote .who{color:var(--text-dim);font-weight:600}
+/* Testimonios */
+.testi{background:radial-gradient(900px 400px at 100% -40%, rgba(75,132,198,.10) 0%, transparent 55%)}
+.quote{
+  background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;display:grid;gap:6px
+}
+.quote .who{color:var(--ink-dim);font-weight:600}
 
-.cta{background:linear-gradient(135deg,#0f2e26,#0a1f1a);border:1px solid #184337;border-radius:var(--radius);padding:22px;display:grid;gap:10px}
+/* CTA */
+.cta{
+  background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--radius);padding:22px;display:grid;gap:10px
+}
 .cta h3{margin:0}
 
-footer{border-top:1px solid #14342b;opacity:.95}
+/* Footer */
+footer{border-top:1px solid var(--border);background:var(--paper)}
 .foot{display:grid;gap:18px;grid-template-columns:1.2fr .8fr .8fr}
-.foot a{color:var(--text-dim)}
-.fine{color:#98b5ac;font-size:.9rem}
+.foot a{color:var(--ink-dim)}
+.fine{color:var(--ink-dim);font-size:.9rem}
 @media (max-width:920px){.foot{grid-template-columns:1fr}}
 
+/* Página */
 .main{min-height:54vh}
-.breadcrumbs{color:var(--text-dim);font-size:.95rem;margin-bottom:10px}
-.breadcrumbs a{color:var(--text-dim)}
-hr.sep{border:0;border-top:1px solid #14342b;margin:10px 0 20px}
+.breadcrumbs{color:var(--ink-dim);font-size:.95rem;margin-bottom:10px}
+.breadcrumbs a{color:var(--ink-dim)}
+hr.sep{border:0;border-top:1px solid var(--border);margin:10px 0 20px}
+
+/* ================= KPIs a franjas corporativas ================= */
+.kpis.brand{
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:0; border-radius:18px; overflow:hidden; box-shadow:var(--shadow);
+  border:1px solid var(--border);
+}
+.kpis.brand .kpi{ padding:26px 22px; text-align:center; border:0; border-radius:0; color:#fff }
+.kpis.brand .kpi b{ display:block; font-size:clamp(1.6rem,5vw,2.2rem); line-height:1.1 }
+.kpis.brand .kpi span{ opacity:.95 }
+.kpis.brand .kpi:nth-child(1){ background:var(--brand-red) }
+.kpis.brand .kpi:nth-child(2){ background:var(--brand-gold); color:#2E2304 }
+.kpis.brand .kpi:nth-child(3){ background:var(--brand-teal) }
+.kpis.brand .kpi:nth-child(4){ background:var(--brand-blue) }
+
+/* Onda inferior (si envuelves .kpis.brand en .brand-band) */
+.brand-band{position:relative}
+.brand-band::after{
+  content:""; position:absolute; left:0; right:0; bottom:-1px; height:56px;
+  background: radial-gradient(160% 100% at 50% -10%, var(--paper) 60%, transparent 61%) bottom/100% 56px no-repeat;
+}
+
+/* ================== Equipo (retratos y compactas) ================== */
+.portrait-card{
+  background:var(--surface);
+  border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);
+  overflow:hidden;display:flex;flex-direction:column;min-height:100%;
+}
+.portrait-media{position:relative;overflow:hidden}
+.portrait-img{ width:100%; aspect-ratio:4/5; height:auto; object-fit:cover; background:var(--paper-2); display:block }
+@supports not (aspect-ratio: 4/5){ .portrait-img{ height:360px } }
+.accent-bar{ height:4px;width:100%; background:linear-gradient(90deg,var(--brand),var(--accent)) }
+.accent-bar.directiva{ background:linear-gradient(90deg,var(--gold),var(--brand)) }
+.accent-bar.tecnico{ background:linear-gradient(90deg,var(--brand),var(--accent)) }
+.portrait-body{ padding:14px 16px }
+.portrait-name{ margin:.1rem 0 .2rem; font-size:1.06rem }
+.role{ color:var(--ink-dim); margin:0 }
+.bio{ margin:.6rem 0 0; color:var(--ink-dim) }
+.tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px }
+.tags .tag{ background:var(--paper-2); border-color:var(--border); color:var(--ink-dim) }
+
+/* Red de colaboradores (compactas) */
+.team-card{ display:grid; grid-template-columns:96px 1fr; gap:14px; align-items:start }
+.avatar,.avatar-fallback{
+  width:96px;height:96px;border-radius:18px;object-fit:cover;
+  border:1px solid var(--border);background:var(--paper-2);display:block
+}
+.avatar-fallback{
+  display:grid;place-items:center;font-weight:800;font-size:1.1rem;
+  color:#4E2F22; background:linear-gradient(135deg,#EFE1D7,#F8EFE9);
+}
+
+/* ===== Utilidades visuales ===== */
+.surface-section{ background:var(--surface); padding:24px 0 }
+.paper-section{ background:var(--paper); padding:24px 0 }
+
+/* =========================
+   LBC v4.1 — Accessibility & Brand Fix Pack
+   - Mejora contraste en paneles
+   - Botón primario coherente
+   - Chips y textos legibles
+   ========================= */
+
+/* --- nuevos tokens para panel oscuro (manteniendo marca) --- */
+:root{
+  --panel:       #0E3854;      /* azul petróleo */
+  --panel-2:     #0B2C43C;
+  --panel-border:#164A6C;
+  --on-panel:    #F2FBF8;   /* texto sobre panel (≥ AA) */
+  --on-panel-dim:#CBE8E1;   /* texto atenuado sobre panel */
+  --btn-primary: #0F766E;   /* coherente con marca */
+  --btn-primary-h:#0C5F59;  /* hover */
+}
+
+/* --- botón primario (más corporativo y con mejor contraste) --- */
+.btn-primary{
+  background: var(--btn-primary);
+  color:#fff;
+  border: 0;
+}
+.btn-primary:hover{ background: var(--btn-primary-h) }
+.btn-primary:focus{ outline:2px solid #ffffffaa; outline-offset:2px }
+
+/* --- botón fantasma, más legible en salmón pálido --- */
+.btn-ghost{
+  border:1px solid var(--border);
+  color:var(--ink);
+  background: rgba(255,255,255,.4);
+}
+.btn-ghost:hover{ background: var(--paper-2) }
+
+/* --- chips/badges con contraste suficiente --- */
+.chip{
+  background:#fff;
+  border:1px solid var(--border);
+  color:var(--ink);
+  box-shadow: 0 2px 6px rgba(0,0,0,.04);
+}
+
+/* --- HERO: título/lead y tarjetas consistentes --- */
+.hero-card{
+  background: #fff;
+  border:1px solid var(--border);
+}
+.lead{ color: var(--ink) }
+
+/* --- PUNTOS/VIÑETAS en hero: usa color de marca visible --- */
+.hero-points span{ color: var(--ink) }
+.dot{ background: var(--brand-blue) }
+
+/* --- SECCIÓN “¿Por qué elegir LBC?”: paneles oscuros accesibles --- */
+/* Aplica a tarjetas de features/servicios (si existen esas clases) */
+.features .card,
+.feature,
+.service-card{
+  background: var(--panel);
+  border:1px solid var(--panel-border);
+  color: var(--on-panel);
+  box-shadow: 0 14px 30px rgba(1, 28, 24, .24);
+}
+.features .card h3,
+.feature h3,
+.service-card h3{ color: var(--on-panel) }
+
+.features .card p,
+.feature p,
+.service-card p,
+.features .list,
+.service-card .list{ color: var(--on-panel-dim) }
+
+.features .icon{ 
+  background: linear-gradient(135deg, var(--panel-2), var(--panel));
+  border:1px solid var(--panel-border);
+}
+.check{ background: linear-gradient(135deg, var(--brand), var(--brand-2)) }
+
+/* --- tarjetas generales en el resto del sitio: claras y legibles --- */
+.cards:not(.features) .card{
+  background: var(--surface);
+  color: var(--ink);
+  border:1px solid var(--border);
+}
+
+/* --- enlaces del menú activo/hover con mejor visibilidad --- */
+.menu a:hover{ background: var(--paper-2); color: var(--ink) }
+.menu a.active{
+  background:#fff;
+  border:1px solid var(--border);
+  color: var(--ink-strong);
+}
+
+/* --- citas/testimonios, más claras en base salmón --- */
+.quote{
+  background:#fff;
+  border:1px solid var(--border);
+}
+
+/* --- barras de evidencia, mayor contraste --- */
+.bar .bar-track{ background:#fff; border:1px solid var(--border) }
+.bar .bar-fill{ background: linear-gradient(90deg,var(--brand),var(--brand-2)) }
+
+/* --- tarjetas del equipo: texto acorde a superficie --- */
+.portrait-card{
+  background:#fff;
+  border:1px solid var(--border);
+}
+.role, .bio{ color: var(--ink-dim) }
+
+/* --- KPI band: mantiene paleta corporativa, mejora texto en bloque 2 --- */
+.kpis.brand .kpi:nth-child(2){ color:#2A2200 }  /* sobre amarillo */
+
+/* --- sombras más sobrias y consistentes --- */
+.card, .portrait-card, .cta{
+  box-shadow: 0 10px 24px rgba(20, 12, 8, .08);
+}
+
+/* =========================================================
+   CONTROL DE COLOR/TRANSPARENCIA DE RECUADROS (PANELES)
+   ========================================================= */
+
+/* 1) Ajusta aquí el color base y la transparencia global de los paneles */
+:root{
+  /* Color del panel en RGB (ej. teal profundo) */
+  --panel-rgb: 16, 55, 50;      /* <— CAMBIA a tu color (R,G,B) */
+  --panel-alpha: 0.92;          /* <— 0 = transparente, 1 = sólido */
+  --panel-border-alpha: 0.30;   /* borde un poco más notorio */
+  --on-panel: #F2FBF8;          /* texto principal en panel */
+  --on-panel-dim: #F2FBF8;      /* texto atenuado en panel */
+}
+
+/* 2) Recuadros de “¿Por qué LBC?” y tarjetas de servicios */
+.features .card,
+.feature,
+.service-card{
+  background: rgba(var(--panel-rgb), var(--panel-alpha)) !important;
+  border: 1px solid rgba(var(--panel-rgb), var(--panel-border-alpha)) !important;
+  color: var(--on-panel) !important;
+  box-shadow: 0 14px 30px rgba(1, 28, 24, .22);
+}
+.features .card h3,
+.feature h3,
+.service-card h3{ color: var(--on-panel) !important; }
+.features .card p,
+.feature p,
+.service-card p,
+.features .list,
+.service-card .list{ color: var(--on-panel-dim) !important; }
+
+/* 3) KPIs (los cuatro bloques con números) */
+.kpis .kpi{
+  background: rgba(var(--panel-rgb), var(--panel-alpha)) !important;
+  border: 1px solid rgba(var(--panel-rgb), var(--panel-border-alpha)) !important;
+  color: var(--on-panel) !important;
+}
+.kpis .kpi span{ color: var(--on-panel-dim) !important; }
+
+/* 4) Chips/etiquetas dentro de paneles (para que no queden pálidos) */
+.pill, .tag, .chip{
+  background: rgba(255,255,255,.08) !important;
+  border: 1px solid rgba(255,255,255,.18) !important;
+  color: var(--on-panel) !important;
+}
+
+/* 5) Utilidades por si quieres distintas transparencias por tarjeta */
+.panel-80{ --panel-alpha: .80; }
+.panel-70{ --panel-alpha: .70; }
+/* En HTML: <article class="feature panel-80"> … </article> */
+
+/* =========================================================
+   LBC Panels  — Control de steps & FAQ
+   ========================================================= */
+
+/* ---- Variables por defecto (puedes cambiarlas globalmente) ---- */
+:root{
+  /* Color base del panel en RGB + transparencia */
+  --panel-rgb: 16, 55, 50;    /* teal profundo */
+  --panel-alpha: .92;         /* 0=transparente, 1=sólido */
+  --panel-border-alpha: .28;
+
+  /* Texto sobre panel */
+  --on-panel: #FCF7F0;
+  --on-panel-dim: #FCF7F0;
+
+  /* Geometría */
+  --panel-radius: 16px;
+  --panel-pad: 16px;
+  --panel-gap: 12px;
+
+  /* Badges/números de los pasos */
+  --step-badge-bg: #4B84C6;   /* azul marca */
+  --step-badge-color: #fff;
+  --step-badge-size: 28px;
+  --step-badge-offset: -12px;
+}
+
+/* ============ PROCESO (Cómo trabajamos) ============ */
+.process{
+  display:grid; gap: var(--panel-gap);
+}
+.process .step{
+  background: rgba(var(--panel-rgb), var(--panel-alpha)) !important;
+  border: 1px solid rgba(var(--panel-rgb), var(--panel-border-alpha)) !important;
+  color: var(--on-panel) !important;
+  border-radius: var(--panel-radius);
+  padding: var(--panel-pad);
+  position:relative; min-height:110px;
+  box-shadow: 0 14px 30px rgba(1, 28, 24, .18);
+}
+.process .step h4{ color: var(--on-panel) !important; margin:.2rem 0 .25rem; font-weight:700 }
+.process .step p{ color: var(--on-panel-dim) !important; margin:0 }
+
+.process .step::before{
+  content: attr(data-step);
+  position:absolute; top: var(--step-badge-offset); left: var(--step-badge-offset);
+  width: var(--step-badge-size); height: var(--step-badge-size);
+  display:grid; place-items:center; font-weight:800;
+  color: var(--step-badge-color);
+  background: var(--step-badge-bg);
+  border-radius: 999px; box-shadow: 0 6px 16px rgba(0,0,0,.18);
+}
+
+/* Columas rápidas (ajústalas en el contenedor .process) */
+.process.cols-4{ grid-template-columns:repeat(4,minmax(0,1fr)) }
+.process.cols-3{ grid-template-columns:repeat(3,minmax(0,1fr)) }
+.process.cols-2{ grid-template-columns:repeat(2,minmax(0,1fr)) }
+.process.cols-1{ grid-template-columns:1fr }
+
+/* Densidades */
+.process.is-compact{ --panel-pad:12px; --step-badge-size:24px; --step-badge-offset:-10px }
+.process.is-roomy{ --panel-pad:20px; --panel-radius:18px }
+
+/* Variantes de color por sección */
+.process.is-light{
+  --panel-rgb: 255,255,255;
+  --panel-alpha: 1;
+  --panel-border-alpha: .55;
+  --on-panel: #FCF7F0;
+  --on-panel-dim: #FCF7F0;
+}
+
+/* ============ FAQ (Preguntas frecuentes) ============ */
+.faq{
+  /* hereda variables; puedes redefinir solo para esta sección: */
+}
+.faq details{
+  background: rgba(var(--panel-rgb), var(--panel-alpha)) !important;
+  border: 1px solid rgba(var(--panel-rgb), var(--panel-border-alpha)) !important;
+  border-radius: var(--panel-radius);
+  padding: calc(var(--panel-pad) - 4px) var(--panel-pad);
+  color: var(--on-panel);
+  box-shadow: 0 10px 22px rgba(1, 28, 24, .16);
+}
+.faq summary{ cursor:pointer; font-weight:700; color:var(--on-panel) }
+.faq p{ color: var(--on-panel-dim); margin:.6rem 0 0 }
+.faq details + details{ margin-top:10px }
+
+/* Variante clara para FAQ únicamente */
+.faq.is-light{
+  --panel-rgb: 255,255,255;
+  --panel-alpha: 1;
+  --panel-border-alpha: .55;
+  --on-panel: #FCF7F0;
+  --on-panel-dim: #FCF7F0;
+}
+
+/* Utilidades por tarjeta (aplícalas a .step o details) */
+.panel-80{ --panel-alpha:.80 }
+.panel-70{ --panel-alpha:.70 }
+.panel-rounded{ --panel-radius:22px }
+.panel-flat{ --panel-radius:8px }
+
+/* =========================================================
+   LBC Team Cards v1 — Control visual de recuadros (Directiva/Equipo)
+   ========================================================= */
+
+/* TOKENS (puedes cambiarlos globalmente) */
+:root{
+  /* Panel inferior (recuadro bajo la foto) */
+  --team-bg-rgb: 12, 56, 84;    /* <— CAMBIA color base (R,G,B)  ej. teal/azul petróleo */
+  --team-bg-alpha: .92;         /* <— CAMBIA transparencia (0..1) */
+  --team-border-alpha: .28;     /* borde del panel */
+
+  /* Texto del panel */
+  --team-on: #F2FBF8;           /* principal sobre panel */
+  --team-on-dim: #CBE0E9;       /* atenuado sobre panel */
+
+  /* Acento (línea entre foto/panel) */
+  --team-accent: var(--brand-gold); /* oro, o usa var(--brand-teal)/--brand-blue/--brand-red */
+
+  /* Geometría/ritmo */
+  --team-radius: 18px;
+  --team-pad: 14px;
+  --team-gap: 16px;
+
+  /* Foto */
+  --team-photo-ratio: 4/5;      /* 4/5, 3/4, 16/9… */
+  --team-photo-radius: 16px;
+
+  /* Tipografía */
+  --team-name-w: 800;           /* peso del nombre */
+  --team-role-c: var(--team-on-dim);
+}
+
+/* GRID de equipo (nº columnas y gap) */
+.team-grid{ gap: var(--team-gap) }
+.team-cols-3{ grid-template-columns:repeat(3,minmax(0,1fr)) }
+.team-cols-2{ grid-template-columns:repeat(2,minmax(0,1fr)) }
+@media (max-width: 980px){ .team-cols-3, .team-cols-2{ grid-template-columns:1fr } }
+
+/* --- Tarjeta retrato --- */
+.portrait-card{
+  border-radius: var(--team-radius);
+  background: transparent;       /* panel va en .portrait-body */
+  box-shadow: 0 12px 26px rgba(1,28,24,.18);
+}
+.portrait-media{ position:relative; overflow:hidden; }
+.portrait-img{
+  width:100%; aspect-ratio: var(--team-photo-ratio); object-fit:cover; display:block;
+  border-top-left-radius: var(--team-photo-radius);
+  border-top-right-radius: var(--team-photo-radius);
+}
+@supports not (aspect-ratio: 4/5){ .portrait-img{ height: 360px } }
+
+/* Línea/acento entre foto y panel */
+.accent-bar{ height:4px; background: var(--team-accent) }
+
+/* Panel inferior (recuadro con textos) */
+.portrait-body{
+  background: rgba(var(--team-bg-rgb), var(--team-bg-alpha));
+  border-left: 1px solid rgba(var(--team-bg-rgb), var(--team-border-alpha));
+  border-right:1px solid rgba(var(--team-bg-rgb), var(--team-border-alpha));
+  border-bottom:1px solid rgba(var(--team-bg-rgb), var(--team-border-alpha));
+  border-bottom-left-radius: var(--team-radius);
+  border-bottom-right-radius: var(--team-radius);
+  color: var(--team-on);
+  padding: var(--team-pad);
+}
+.portrait-name{ color: var(--team-on); font-weight: var(--team-name-w); margin:.2rem 0 .15rem }
+.role{ color: var(--team-role-c); margin:0 }
+.bio{ color: var(--team-on-dim); margin:.6rem 0 0 }
+
+.tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px }
+.tags .tag{
+  background: rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.22);
+  color: var(--team-on);
+}
+
+/* === Variantes rápidas (aplícalas al contenedor .team-grid o a cada .portrait-card) === */
+.team-dark{ /* ya es el modo por defecto; aquí por si quieres forzar */
+  --team-bg-rgb: 12, 56, 84;
+  --team-bg-alpha: .92;
+  --team-accent: var(--brand-gold);
+}
+.team-light{ /* panel claro si lo prefieres */
+  --team-bg-rgb: 255,255,255;
+  --team-bg-alpha: 1;
+  --team-border-alpha: .55;
+  --team-on: #3E2A20;
+  --team-on-dim: #6E5B51;
+  --team-role-c: #6E5B51;
+}
+.team-compact{ --team-pad: 12px; --team-gap: 12px }
+.team-roomy  { --team-pad: 18px; --team-gap: 18px }
+.team-blue   { --team-bg-rgb: 20, 60, 96 }     /* variante azul */
+.team-teal   { --team-bg-rgb: 12, 56, 84 }     /* variante teal */
+.team-green  { --team-bg-rgb: 10, 74, 60 }     /* variante verdosa */
+.team-80     { --team-bg-alpha: .80 }          /* transparencia */
+.team-70     { --team-bg-alpha: .70 }
+
