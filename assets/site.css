@@ -646,19 +646,17 @@ hr.sep{border:0;border-top:1px solid var(--border);margin:10px 0 20px}
 
 /* ===== Títulos de Sección de Equipo (Nosotros) Mejorados ===== */
 .team-title {
-    background: linear-gradient(180deg, #0F2336, #0B1C2B);
-    color: #FFFFFF;
-    border: 1px solid #183C60;
-    border-radius: var(--radius-sm);
-    padding: 0.75rem 1.5rem;
-    margin: 2.5rem 0 1rem;
+    color: var(--ink-dim);
     text-align: center;
-    font-size: 1.25rem;
-    letter-spacing: 0.5px;
-    font-weight: 700;
-    box-shadow: var(--shadow);
-}
-
-.team-title::before {
-    display: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 4rem 0 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0.5rem 0; /* Ajusta el padding para que no se vea cortado */
 }
