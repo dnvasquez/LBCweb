@@ -635,7 +635,6 @@ hr.sep{border:0;border-top:1px solid var(--border);margin:10px 0 20px}
   flex-shrink: 0;
 }
 
-
 @keyframes scroll {
   from {
     transform: translateX(0);
@@ -643,4 +642,23 @@ hr.sep{border:0;border-top:1px solid var(--border);margin:10px 0 20px}
   to {
     transform: translateX(-50%);
   }
+}
+
+/* ===== Títulos de Sección de Equipo (Nosotros) Mejorados ===== */
+.team-title {
+    background: linear-gradient(180deg, #0F2336, #0B1C2B);
+    color: #FFFFFF;
+    border: 1px solid #183C60;
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1.5rem;
+    margin: 2.5rem 0 1rem;
+    text-align: center;
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    box-shadow: var(--shadow);
+}
+
+.team-title::before {
+    display: none;
 }
