@@ -7,53 +7,20 @@
   <link rel="icon" href="assets/favicon.png" />
   <link rel="stylesheet" href="assets/site.css" />
   <style>
-    /* ===== Ajustes visuales específicos de esta página (paleta v2) ===== */
-    .team-wrap{margin-top:12px}
-    .team-note{margin:0 0 8px;color:var(--muted);font-size:.95rem}
+    /* ===== Ajustes visuales específicos de esta página ===== */
+    .team-wrap { margin-top: 12px; }
+    .team-note { margin: 0 0 8px; color: var(--muted); font-size: .95rem; }
+    .team-grid { display: grid; gap: 16px; }
+    .team-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .team-grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-    /* Grid por sección */
-    .team-grid{display:grid;gap:16px}
-    .team-grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .team-grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-    @media (max-width: 980px){.team-grid{grid-template-columns:1fr}}
+    /* Ocultar la barra de acento para un look más minimalista */
+    .accent-bar {
+        display: none;
+    }
 
-    /* ==== Card retrato (Directiva y Técnico) ==== */
-    .portrait-card{
-      background:linear-gradient(180deg,#0F2336,#0B1C2B);
-      border:1px solid #183C60;border-radius:18px;box-shadow:var(--shadow);
-      overflow:hidden;display:flex;flex-direction:column;min-height:100%;
-    }
-    .portrait-media{position:relative;overflow:hidden}
-    /* Foto grande arriba: relación 4:5, con fallback */
-    .portrait-img{
-      width:100%;aspect-ratio:4/5;height:auto;object-fit:cover;
-      background:#0F2236;display:block;
-    }
-    @supports not (aspect-ratio: 4/5){
-      .portrait-img{height:360px;}
-    }
-    .accent-bar{
-      height:6px;width:100%;
-      background:linear-gradient(90deg,var(--brand),var(--accent));
-    }
-    .accent-bar.directiva{background:linear-gradient(90deg,var(--gold),var(--brand))}
-    .accent-bar.tecnico{background:linear-gradient(90deg,var(--brand),var(--accent))}
-    .portrait-body{padding:14px 16px}
-    .portrait-name{margin:.1rem 0 .2rem;font-size:1.02rem}
-    .role{color:var(--text-dim);margin:0}
-    .bio{margin:.6rem 0 0;color:var(--text-dim)}
-    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-    .tags .tag{background:#102B49;border-color:#1C4A7A;color:#DDE9F6}
-
-    /* ==== Card compacta (Red de colaboradores) ==== */
-    .team-card{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start}
-    .avatar,.avatar-fallback{
-      width:96px;height:96px;border-radius:18px;object-fit:cover;
-      border:1px solid #1B3D61;background:#0F2236;display:block
-    }
-    .avatar-fallback{
-      display:grid;place-items:center;font-weight:800;font-size:1.1rem;
-      color:#DDE9F6;background:linear-gradient(135deg,#102B49,#14375E);
+    @media (max-width: 980px) {
+        .team-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
