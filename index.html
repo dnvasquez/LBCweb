@@ -4,11 +4,120 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LBC Consultores Ambientales — Gestión ambiental con evidencia</title>
-  <meta name="description" content="Estudios de biodiversidad, SIG, monitoreo, cumplimiento y certificaciones. Resolvemos con evidencia y experiencia." />
+  <meta name="description" content="Consultora ambiental chilena. Estudios de biodiversidad, SIG, monitoreo, cumplimiento normativo y certificaciones. Resolvemos con evidencia y experiencia." />
   <link rel="icon" href="assets/favicon.png" />
   <link rel="stylesheet" href="assets/site.css" />
+
+  <!-- Estilos extra SOLO para Home -->
+  <style>
+    /* HERO mejorado */
+    .hero{
+      padding: 84px 0 44px;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-40% -10% auto -10%;
+      height: 80vh;
+      background:
+        radial-gradient(800px 400px at 10% 10%, #1c6b5a33 0%, transparent 60%),
+        radial-gradient(600px 300px at 90% 20%, #1a5b4e33 0%, transparent 60%);
+      pointer-events:none; z-index:-1;
+    }
+    .gradient-text{
+      background: linear-gradient(135deg, var(--text) 30%, var(--brand) 80%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-actions{ display:flex; gap:12px; flex-wrap:wrap }
+    .hero-points{ display:flex; gap:18px; margin-top:14px; flex-wrap:wrap; color:var(--text-dim); font-size:.98rem }
+    .hero-points span{ display:inline-flex; gap:.5rem; align-items:center }
+    .dot{ width:.55rem; height:.55rem; border-radius:999px; background:linear-gradient(135deg,var(--brand),var(--brand-2)) }
+
+    /* Features “Por qué LBC” */
+    .features{ grid-template-columns:repeat(3,minmax(0,1fr)); margin-top: 14px }
+    .feature{ display:grid; gap:8px; background:linear-gradient(180deg,#0f241f,#0b1c17); border:1px solid #173b31; padding:18px; border-radius: var(--radius); box-shadow: var(--shadow) }
+    .icon{
+      width:38px; height:38px; border-radius:12px;
+      display:grid; place-items:center;
+      background: linear-gradient(135deg, #134a3f, #0f382f); border:1px solid #1b4a3e
+    }
+    .feature h3{ margin:.1rem 0 .2rem; font-size:1.05rem }
+    .feature p{ color: var(--text-dim); margin:0 }
+
+    @media (max-width: 980px){
+      .features{ grid-template-columns:1fr }
+    }
+
+    /* Servicios destacados renovados */
+    .service-card{
+      display:grid; gap:10px;
+      background:linear-gradient(180deg,#0f231d,#0b1c17);
+      border:1px solid #173b31; border-radius:var(--radius);
+      padding:18px; box-shadow:var(--shadow);
+      transition: transform .15s ease, border-color .15s ease;
+    }
+    .service-card:hover{ transform: translateY(-2px); border-color:#1f6b59 }
+    .service-head{ display:flex; align-items:center; justify-content:space-between; gap:12px }
+    .service-head h3{ margin:0; font-size:1.1rem }
+    .pill{ font-size:.78rem; padding:.2rem .5rem; border-radius:999px; border:1px solid #1c3f34; color:var(--text-dim); background:#0c1f19 }
+    .list{ margin:.3rem 0 0; padding:0; list-style:none; color:var(--text-dim); font-size:.98rem }
+    .list li{ display:flex; gap:.6rem; align-items:flex-start; margin:.25rem 0 }
+    .check{ width:.9rem; height:.9rem; margin-top:.2rem; border-radius:3px; background:linear-gradient(135deg,var(--brand),var(--brand-2)) }
+
+    /* Proceso */
+    .process{ counter-reset:step; display:grid; gap:12px; grid-template-columns: repeat(4, minmax(0,1fr)); }
+    .step{
+      background: linear-gradient(180deg,#0f231d,#0b1c17); border:1px solid #173b31;
+      padding:16px; border-radius:14px; position:relative; min-height:110px
+    }
+    .step::before{
+      counter-increment:step; content:counter(step);
+      position:absolute; top:-12px; left:-12px; width:36px; height:36px; border-radius:999px;
+      display:grid; place-items:center; font-weight:800; color:#06241c;
+      background:linear-gradient(135deg,var(--brand),var(--brand-2)); box-shadow:var(--shadow);
+    }
+    .step h4{ margin:.4rem 0 .3rem; font-size:1rem }
+    .step p{ margin:0; color:var(--text-dim) }
+    @media (max-width: 980px){ .process{ grid-template-columns:1fr 1fr } }
+    @media (max-width: 620px){ .process{ grid-template-columns:1fr } }
+
+    /* KPIs con contador */
+    .kpis{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px }
+    .kpi{ background:#0f241e; border:1px solid #1a3d33; border-radius:14px; padding:16px; text-align:center }
+    .kpi b{ display:block; font-size:clamp(1.2rem,3.6vw,1.8rem) }
+    .kpi span{ color:var(--text-dim) }
+    @media (max-width: 980px){ .kpis{ grid-template-columns:1fr 1fr } }
+
+    /* FAQ accesible */
+    .faq details{
+      background:linear-gradient(180deg,#0f231d,#0b1c17); border:1px solid #173b31; border-radius:12px;
+      padding:12px 14px;
+    }
+    .faq summary{ cursor:pointer; font-weight:600 }
+    .faq details + details{ margin-top:10px }
+    .faq p{ color:var(--text-dim); margin:.6rem 0 0 }
+
+    /* CTA flotante opcional */
+    .float-cta{
+      position:fixed; right:16px; bottom:16px; z-index:60;
+      display:inline-flex; gap:.6rem; align-items:center;
+      background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#06241c;
+      border-radius:999px; padding:.7rem 1rem; box-shadow:var(--shadow);
+    }
+    @media (max-width: 760px){ .float-cta{ display:none } }
+  </style>
+<style>
+  .gradient-text{
+    background: linear-gradient(135deg, var(--ink-strong) 35%, var(--brand) 80%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+</style>
+
 </head>
 <body>
+  <!-- NAV -->
   <header class="nav">
     <div class="container nav-inner">
       <a href="index.html" class="logo" aria-label="LBC — Home">
@@ -32,82 +141,167 @@
     <div class="container hero-wrap">
       <div>
         <span class="chip">Consultoría ambiental • Chile</span>
-        <h1>Soluciones ambientales con <u>evidencia técnica</u> y foco en resultados</h1>
-        <p class="lead">Acompañamos proyectos con estudios de biodiversidad, SIG, monitoreo y cumplimiento regulatorio. Respondemos rápido y con rigor técnico.</p>
-        <div class="grid" style="grid-template-columns: auto auto;gap:12px">
+        <h1 class="gradient-text">Decisiones ambientales con <strong>evidencia</strong> y foco en <strong>resultados</strong></h1>
+        <p class="lead">Estudios de biodiversidad, SIG, monitoreo y cumplimiento que aceleran permisos, reducen riesgos y mejoran el desempeño ambiental de tus proyectos.</p>
+
+        <div class="hero-actions">
           <a class="btn btn-primary" href="servicios.html">Ver servicios</a>
-          <a class="btn btn-ghost" href="proyectos.html">Casos y proyectos</a>
+          <a class="btn btn-ghost" href="proyectos.html">Casos y resultados</a>
+          <a class="btn btn-ghost" href="contacto.html">Solicitar propuesta</a>
         </div>
 
-        <div class="hero-card" aria-label="Indicadores de confianza">
-          <div class="hero-stats">
-            <div class="stat"><b>10+ años</b><span class="muted">de experiencia</span></div>
-            <div class="stat"><b>100+ sitios</b><span class="muted">muestreados</span></div>
-            <div class="stat"><b>24/7</b><span class="muted">compromiso</span></div>
-          </div>
+        <div class="hero-points" aria-label="Puntos de valor">
+          <span><i class="dot"></i> Respuesta ágil y clara</span>
+          <span><i class="dot"></i> Metodologías estandarizadas</span>
+          <span><i class="dot"></i> Trazabilidad y auditoría</span>
         </div>
       </div>
 
       <figure class="hero-card" style="padding:0;overflow:hidden">
-        <img src="https://lbconservation.org/wp-content/uploads/2023/09/DJI_0432-1536x1152.jpg" alt="Paisaje LBC" />
+        <img src="https://lbconservation.org/wp-content/uploads/2023/09/DJI_0432-1536x1152.jpg" alt="Paisaje trabajado por LBC" />
       </figure>
     </div>
   </section>
 
-  <!-- TRUST -->
-  <section class="trust">
+  <!-- POR QUÉ LBC -->
+  <section class="section">
     <div class="container">
-      <div class="muted" style="margin-bottom:10px">Confían en nosotros</div>
-      <div class="trust-logos" aria-label="Organizaciones y partners">
-        <img alt="Logo 1" src="https://dummyimage.com/180x60/18332b/8abaae&text=Universidad" />
-        <img alt="Logo 2" src="https://dummyimage.com/180x60/18332b/8abaae&text=Municipio" />
-        <img alt="Logo 3" src="https://dummyimage.com/180x60/18332b/8abaae&text=ONG" />
-        <img alt="Logo 4" src="https://dummyimage.com/180x60/18332b/8abaae&text=Forestal" />
-        <img alt="Logo 5" src="https://dummyimage.com/180x60/18332b/8abaae&text=Agro" />
-        <img alt="Logo 6" src="https://dummyimage.com/180x60/18332b/8abaae&text=Energ%C3%ADa" />
+      <h2>¿Por qué elegir LBC?</h2>
+      <div class="grid features">
+        <article class="feature">
+          <div class="icon" aria-hidden="true">
+            <!-- Leaf icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 21s6-6 9-9 9-9 9-9-6 6-9 9-9 9-9 9Z" stroke="#9fe6d3" stroke-width="1.6"/></svg>
+          </div>
+          <h3>Rigor ecológico</h3>
+          <p>Protocolos de flora, fauna y hábitats con QA/QC y reportes auditables.</p>
+        </article>
+        <article class="feature">
+          <div class="icon" aria-hidden="true">
+            <!-- Map icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6Z" stroke="#9fe6d3" stroke-width="1.6"/><path d="M9 3v15M15 6v15" stroke="#9fe6d3" stroke-width="1.6"/></svg>
+          </div>
+          <h3>SIG + Modelación</h3>
+          <p>Zonificaciones, MCE y series temporales para priorizar con evidencia.</p>
+        </article>
+        <article class="feature">
+          <div class="icon" aria-hidden="true">
+            <!-- Shield icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 3v6c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V6l8-3Z" stroke="#9fe6d3" stroke-width="1.6"/></svg>
+          </div>
+          <h3>Cumplimiento</h3>
+          <p>Planes de acción y acompañamiento para certificaciones y auditorías.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- SERVICIOS DESTACADOS -->
+  <!-- KPIs -->
+  <section class="section">
+    <div class="container">
+      <div class="kpis" id="kpis">
+        <div class="kpi">
+          <b data-count="10">0</b>
+          <span>Años de experiencia</span>
+        </div>
+        <div class="kpi">
+          <b data-count="100">0</b>
+          <span>Sitios muestreados</span>
+        </div>
+        <div class="kpi">
+          <b data-count="250">0</b>
+          <span>Informes entregados</span>
+        </div>
+        <div class="kpi">
+          <b data-count="0">0</b>
+          <span>Observaciones en auditorías</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS DESTACADOS (mejorados) -->
   <section class="section">
     <div class="container">
       <h2>Servicios clave para tu proyecto</h2>
-      <p class="muted">Ciencia aplicada, tecnología y gestión para acelerar permisos, reducir riesgos y maximizar impacto positivo.</p>
+      <p class="muted">Integramos ciencia aplicada, tecnología y gestión para acelerar permisos, reducir riesgos y maximizar impacto positivo.</p>
 
       <div class="grid cards" style="margin-top:12px">
-        <article class="card">
-          <span class="tag">Biodiversidad</span><span class="tag">Monitoreo</span>
-          <h3>Estudios de flora, fauna y hábitat</h3>
-          <p>Línea base, metodologías estandarizadas (transectos, cámaras trampa) e indicadores para decisiones informadas.</p>
+        <article class="service-card">
+          <div class="service-head">
+            <h3>Estudios de flora, fauna y hábitat</h3>
+            <span class="pill">Biodiversidad</span>
+          </div>
+          <ul class="list">
+            <li><i class="check"></i> Línea base y monitoreo (transectos, cámaras trampa)</li>
+            <li><i class="check"></i> Índices e interpretación (Shannon, Simpson)</li>
+            <li><i class="check"></i> Medidas de manejo y restauración</li>
+          </ul>
           <div class="bar" aria-label="Rapidez de ejecución">
             <span class="muted" style="min-width:110px">Rapidez</span>
-            <span class="bar-track"><i class="bar-fill" style="width:85%"></i></span>
+            <span class="bar-track"><i class="bar-fill" style="width:88%"></i></span>
           </div>
-          <a href="servicios.html#biodiversidad">Conoce más →</a>
+          <a class="btn btn-ghost" href="servicios.html#biodiversidad">Conoce más →</a>
         </article>
 
-        <article class="card">
-          <span class="tag">SIG</span><span class="tag">Modelación</span>
-          <h3>Cartografía y análisis espacial</h3>
-          <p>Zonificación ecológica, aptitud territorial, series temporales y dashboards de seguimiento.</p>
+        <article class="service-card">
+          <div class="service-head">
+            <h3>Cartografía y análisis espacial</h3>
+            <span class="pill">SIG & Modelación</span>
+          </div>
+          <ul class="list">
+            <li><i class="check"></i> Zonificaciones ecológicas y corredores</li>
+            <li><i class="check"></i> MCE, escenarios y series temporales</li>
+            <li><i class="check"></i> Dashboards y trazabilidad</li>
+          </ul>
           <div class="bar" aria-label="Impacto en decisiones">
             <span class="muted" style="min-width:110px">Impacto</span>
-            <span class="bar-track"><i class="bar-fill" style="width:90%"></i></span>
+            <span class="bar-track"><i class="bar-fill" style="width:92%"></i></span>
           </div>
-          <a href="servicios.html#sig">Conoce más →</a>
+          <a class="btn btn-ghost" href="servicios.html#sig">Conoce más →</a>
         </article>
 
-        <article class="card">
-          <span class="tag">Cumplimiento</span><span class="tag">Certificaciones</span>
-          <h3>Apoyo técnico y legal</h3>
-          <p>Exigencias ambientales y certificaciones (GlobalG.A.P., LEAF, Rainforest Alliance) con trazabilidad.</p>
+        <article class="service-card">
+          <div class="service-head">
+            <h3>Cumplimiento y certificaciones</h3>
+            <span class="pill">Gestión</span>
+          </div>
+          <ul class="list">
+            <li><i class="check"></i> Gap analysis y planes de acción</li>
+            <li><i class="check"></i> Registros, procedimientos y auditorías</li>
+            <li><i class="check"></i> GlobalG.A.P., LEAF, Rainforest Alliance</li>
+          </ul>
           <div class="bar" aria-label="Reducción de riesgo">
             <span class="muted" style="min-width:110px">Riesgo</span>
-            <span class="bar-track"><i class="bar-fill" style="width:80%"></i></span>
+            <span class="bar-track"><i class="bar-fill" style="width:84%"></i></span>
           </div>
-          <a href="servicios.html#cumplimiento">Conoce más →</a>
+          <a class="btn btn-ghost" href="servicios.html#cumplimiento">Conoce más →</a>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="section">
+    <div class="container">
+      <h2>Cómo trabajamos</h2>
+      <div class="process">
+        <div class="step">
+          <h4>Contexto & Alcance</h4>
+          <p>Definimos objetivos, restricciones y entregables priorizados.</p>
+        </div>
+        <div class="step">
+          <h4>Métodos & Plan</h4>
+          <p>Protocolos, diseño muestral y plan SIG/analítico trazable.</p>
+        </div>
+        <div class="step">
+          <h4>Ejecución & QA/QC</h4>
+          <p>Terreno, análisis y control de calidad de datos.</p>
+        </div>
+        <div class="step">
+          <h4>Informe & Seguimiento</h4>
+          <p>Resultados accionables, tableros y soporte en auditorías.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -129,7 +323,26 @@
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- FAQ CORTA -->
+  <section class="section">
+    <div class="container faq">
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿En cuánto tiempo pueden entregar una propuesta?</summary>
+        <p>Generalmente dentro de 48–72 horas, según complejidad y antecedentes disponibles.</p>
+      </details>
+      <details>
+        <summary>¿Trabajan en todo Chile?</summary>
+        <p>Sí. Coordinamos logística de terreno y adaptamos protocolos a cada zona.</p>
+      </details>
+      <details>
+        <summary>¿Pueden integrarse a auditorías de certificación?</summary>
+        <p>Apoyamos desde el diagnóstico de brechas hasta el acompañamiento en auditorías.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
   <section class="section">
     <div class="container cta">
       <h3>Conversemos tu desafío</h3>
@@ -163,6 +376,10 @@
     </div>
   </section>
 
+  <!-- CTA flotante -->
+  <a class="float-cta" href="contacto.html" aria-label="Ir a contacto">Necesito una propuesta →</a>
+
+  <!-- FOOTER -->
   <footer class="section">
     <div class="container foot">
       <div>
@@ -191,6 +408,36 @@
   </footer>
 
   <script src="assets/site.js"></script>
+  <script>
+    // Contadores de KPIs (solo Home)
+    (function(){
+      const els = document.querySelectorAll('[data-count]');
+      if(!els.length) return;
+      const dur = 900;
 
+      function animate(el){
+        const target = parseInt(el.getAttribute('data-count'),10) || 0;
+        const start = 0;
+        const t0 = performance.now();
+        (function tick(now){
+          const p = Math.min(1, (now - t0)/dur);
+          const val = Math.floor(start + (target - start) * (0.5 - Math.cos(Math.PI*p)/2)); // ease
+          el.textContent = val;
+          if(p < 1) requestAnimationFrame(tick);
+        })(t0);
+      }
+
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting && !e.target.dataset.done){
+            e.target.dataset.done = 1;
+            animate(e.target);
+          }
+        });
+      }, { threshold: 0.4 });
+
+      els.forEach(el=> io.observe(el));
+    })();
+  </script>
 </body>
 </html>
