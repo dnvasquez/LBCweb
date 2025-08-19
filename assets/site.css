@@ -611,3 +611,36 @@ hr.sep{border:0;border-top:1px solid var(--border);margin:10px 0 20px}
 .team-80     { --team-bg-alpha: .80 }          /* transparencia */
 .team-70     { --team-bg-alpha: .70 }
 
+/* ===== Testimonial Scroller ===== */
+.testimonial-scroller {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  margin-top: 12px;
+}
+
+.testimonial-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.testimonial-track:hover {
+  animation-play-state: paused;
+}
+
+.testimonial-scroller .quote {
+  width: 500px; 
+  margin: 0 10px;
+  flex-shrink: 0;
+}
+
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
