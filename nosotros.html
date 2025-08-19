@@ -6,8 +6,68 @@
   <title>Nosotros — LBC Consultores Ambientales</title>
   <link rel="icon" href="assets/favicon.png" />
   <link rel="stylesheet" href="assets/site.css" />
+  <style>
+    /* ===== Ajustes visuales específicos de esta página (paleta v2) ===== */
+    .team-wrap{margin-top:12px}
+    .team-title{
+      margin:20px 0 6px;font-size:1.1rem;letter-spacing:.2px;
+      display:flex;align-items:center;gap:.6rem;color:#EAF2FC
+    }
+    .team-title::before{
+      content:"";width:14px;height:14px;border-radius:50%;
+      background:linear-gradient(135deg,var(--brand),var(--gold));
+      box-shadow:0 0 0 3px #102B49, 0 0 12px #14324f;
+    }
+    .team-note{margin:0 0 8px;color:var(--muted);font-size:.95rem}
+
+    /* Grid por sección */
+    .team-grid{display:grid;gap:16px}
+    .team-grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .team-grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media (max-width: 980px){.team-grid{grid-template-columns:1fr}}
+
+    /* ==== Card retrato (Directiva y Técnico) ==== */
+    .portrait-card{
+      background:linear-gradient(180deg,#0F2336,#0B1C2B);
+      border:1px solid #183C60;border-radius:18px;box-shadow:var(--shadow);
+      overflow:hidden;display:flex;flex-direction:column;min-height:100%;
+    }
+    .portrait-media{position:relative;overflow:hidden}
+    /* Foto grande arriba: relación 4:5, con fallback */
+    .portrait-img{
+      width:100%;aspect-ratio:4/5;height:auto;object-fit:cover;
+      background:#0F2236;display:block;
+    }
+    @supports not (aspect-ratio: 4/5){
+      .portrait-img{height:360px;}
+    }
+    .accent-bar{
+      height:6px;width:100%;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+    }
+    .accent-bar.directiva{background:linear-gradient(90deg,var(--gold),var(--brand))}
+    .accent-bar.tecnico{background:linear-gradient(90deg,var(--brand),var(--accent))}
+    .portrait-body{padding:14px 16px}
+    .portrait-name{margin:.1rem 0 .2rem;font-size:1.02rem}
+    .role{color:var(--text-dim);margin:0}
+    .bio{margin:.6rem 0 0;color:var(--text-dim)}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .tags .tag{background:#102B49;border-color:#1C4A7A;color:#DDE9F6}
+
+    /* ==== Card compacta (Red de colaboradores) ==== */
+    .team-card{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start}
+    .avatar,.avatar-fallback{
+      width:96px;height:96px;border-radius:18px;object-fit:cover;
+      border:1px solid #1B3D61;background:#0F2236;display:block
+    }
+    .avatar-fallback{
+      display:grid;place-items:center;font-weight:800;font-size:1.1rem;
+      color:#DDE9F6;background:linear-gradient(135deg,#102B49,#14375E);
+    }
+  </style>
 </head>
 <body>
+  <!-- NAV -->
   <header class="nav">
     <div class="container nav-inner">
       <a href="index.html" class="logo" aria-label="LBC — Home">
@@ -17,7 +77,7 @@
       <button class="menu-toggle" aria-expanded="false" aria-controls="menu" id="menuBtn">☰</button>
       <nav class="menu" id="menu" aria-label="Navegación principal">
         <a href="index.html">Home</a>
-        <a href="nosotros.html">Nosotros</a>
+        <a class="active" href="nosotros.html">Nosotros</a>
         <a href="servicios.html">Servicios</a>
         <a href="proyectos.html">Proyectos</a>
         <a href="publicaciones.html">Publicaciones</a>
@@ -26,6 +86,7 @@
     </div>
   </header>
 
+  <!-- CONTENIDO -->
   <main class="container main section">
     <nav class="breadcrumbs"><a href="index.html">Home</a> / Nosotros</nav>
     <h1>Nuestro equipo y enfoque</h1>
@@ -58,8 +119,25 @@
         </div>
       </aside>
     </section>
+
+    <!-- ================== EQUIPO ================== -->
+    <section id="equipo" class="section">
+      <h2>Equipo</h2>
+      <p class="team-note">Los proyectos son liderados por la directiva y un equipo técnico multidisciplinario; además contamos con una red de colaboradores especialistas.</p>
+
+      <div class="team-wrap" id="team-root"></div>
+
+      <!-- Mini-CTA dentro de Nosotros -->
+      <div class="cta" style="margin-top:18px">
+        <h3>¿Quieres conocer la disponibilidad del equipo?</h3>
+        <p class="muted">Cuéntanos tu proyecto y coordinamos el/la especialista indicado/a.</p>
+        <a class="btn btn-primary" href="contacto.html">Coordinar llamada</a>
+      </div>
+    </section>
+    <!-- =============== /EQUIPO ================= -->
   </main>
 
+  <!-- FOOTER -->
   <footer class="section">
     <div class="container foot">
       <div>
@@ -89,5 +167,117 @@
 
   <script src="assets/site.js"></script>
 
+  <!-- ==== DATA + RENDER ==== -->
+  <script>
+    /*
+      Pega tu listado real aquí.
+      - name, role, group: "directiva" | "tecnico" | "colaboradores"
+      - skills: [...]
+      - bio: string
+      - photo: ruta (recomendado para los primeros 8: 3 directiva + 5 técnico)
+    */
+    window.LBC_TEAM = [
+      // ---- DIRECTIVA (3) ----
+      { name:"Camilo López", role:"Director Operativo", group:"directiva", skills:["Monitoreo","Línea base"], bio:"Ing. Agrónomo (PUC)", photo:"assets/team/directiva-1.jpg" },
+      { name:"Víctor Aguilera", role:"Director Ejecutivo", group:"directiva", skills:["SIG","MCE","Teledetección"], bio:"Ing. Agrónomo (PUC) Msc. RRNN (PUC)", photo:"assets/team/directiva-2.jpg" },
+      { name:"César Figueroa", role:"Director de Proyectos", group:"directiva", skills:["Auditorías","Certificaciones"], bio:"Ing. Forestal (PUC) Msc. RRNN (PUC)", photo:"assets/team/directiva-3.jpg" },
+
+      // ---- EQUIPO TÉCNICO (5) ----
+      { name:"Álvaro Escobar Jackson", role:"Conservación y Medio Biótico", group:"tecnico", skills:["Conservación","Restauración"], bio:"Ing. Forestal (PUC). Master in Environmental Management, Conservation and Natural Resource Management (U. of Queensland).", photo:"assets/team/tecnico-1.jpg" },
+      { name:"David Vásquez Stuardo", role:"Ecosistemas terrestres y biodiversidad", group:"tecnico", skills:["Edafología","SIG","Agricultura"], bio:"Ing. Agrónomo (PUC). Msc RRNN (PUC).", photo:"assets/team/tecnico-2.jpg" },
+      { name:"Sebastián Moller Cepeda", role:"Medioambiente", group:"tecnico", skills:["Flora","Vegetación", "Taxonomía"], bio:"Ing. Forestal (PUC). Especialista en flora y vegetación.", photo:"assets/team/tecnico-3.jpg" },
+      { name:"Nadia Fabres", role:"Asistente en terreno y procesamiento de datos", group:"tecnico", skills:["Protocolos","Terreno", "Procesamiento"], bio:"", photo:"assets/team/tecnico-4.jpg" },
+      { name:"Paula Becerra", role:"Diseño & Marketing", group:"tecnico", skills:["Diseño","Ilustración", "RRSS"], bio:"", photo:"assets/team/tecnico-5.jpg" },
+
+      // ---- RED DE COLABORADORES (resto) ----
+      { name:"Colaborador/a 1", role:"Especialidad", group:"colaboradores", skills:["Asesoría"], bio:"" },
+      { name:"Colaborador/a 2", role:"Especialidad", group:"colaboradores", skills:["Asesoría"], bio:"" },
+      { name:"Colaborador/a 3", role:"Especialidad", group:"colaboradores", skills:["Asesoría"], bio:"" },
+      { name:"Colaborador/a 4", role:"Especialidad", group:"colaboradores", skills:["Asesoría"], bio:"" }
+      // ... añade los demás
+    ];
+
+    // ------- Render UI -------
+    (function(){
+      const root = document.getElementById('team-root');
+      const people = window.LBC_TEAM || [];
+
+      const groups = [
+        { key:"directiva",  title:"Directiva",         colsClass:"cols-3" },
+        { key:"tecnico",    title:"Equipo técnico",    colsClass:"cols-3" },
+        { key:"colaboradores", title:"Red de colaboradores", colsClass:"cols-2" }
+      ];
+
+      // contador global para forzar foto en los primeros 8 (directiva+tecnico)
+      let globalIndex = 0;
+
+      const esc = s => (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+      const initials = name => (name||"LBC").split(" ").slice(0,2).map(w=>w[0]||"").join("").toUpperCase();
+
+      function mediaFor(p, mustHavePhoto, big=false){
+        const alt = `Foto — ${esc(p.name)}`;
+        if (p.photo || mustHavePhoto){
+          const src = p.photo || `https://dummyimage.com/800x1000/102B49/DDE9F6&text=${encodeURIComponent(initials(p.name))}`;
+          return big
+            ? `<img class="portrait-img" alt="${alt}" src="${src}">`
+            : `<img class="avatar" alt="${alt}" src="${src}">`;
+        }
+        // fallback por iniciales
+        return big
+          ? `<div class="portrait-img" style="display:grid;place-items:center;background:linear-gradient(135deg,#102B49,#14375E);font-weight:800;font-size:1.6rem;color:#DDE9F6">${initials(p.name)}</div>`
+          : `<div class="avatar-fallback" aria-label="Avatar — ${esc(p.name)}">${initials(p.name)}</div>`;
+      }
+
+      function portraitCard(p, group){
+        globalIndex++;
+        const mustHavePhoto = globalIndex <= 8;
+        const skills = (p.skills||[]).map(s=>`<span class="tag">${esc(s)}</span>`).join("");
+        const barClass = group === "directiva" ? "directiva" : "tecnico";
+        return `
+          <article class="portrait-card">
+            <div class="portrait-media">
+              ${mediaFor(p, mustHavePhoto, true)}
+              <div class="accent-bar ${barClass}"></div>
+            </div>
+            <div class="portrait-body">
+              <h3 class="portrait-name">${esc(p.name)}</h3>
+              <p class="role">${esc(p.role||"")}</p>
+              <div class="tags">${skills}</div>
+              ${p.bio ? `<p class="bio">${esc(p.bio)}</p>` : ""}
+            </div>
+          </article>
+        `;
+      }
+
+      function compactCard(p){
+        const skills = (p.skills||[]).map(s=>`<span class="tag">${esc(s)}</span>`).join("");
+        return `
+          <article class="card team-card">
+            ${mediaFor(p, false, false)}
+            <div>
+              <h3 style="margin:.1rem 0 .2rem">${esc(p.name)}</h3>
+              <p class="role">${esc(p.role||"")}</p>
+              <div class="tags">${skills}</div>
+              ${p.bio ? `<p class="bio">${esc(p.bio)}</p>` : ""}
+            </div>
+          </article>
+        `;
+      }
+
+      groups.forEach(g=>{
+        const items = people.filter(p=>p.group===g.key);
+        if(!items.length) return;
+
+        const section = document.createElement('section');
+        section.innerHTML = `
+          <h3 class="team-title">${g.title}</h3>
+          <div class="team-grid ${g.colsClass}">
+            ${items.map(p => (g.key === "directiva" || g.key === "tecnico") ? portraitCard(p, g.key) : compactCard(p)).join("")}
+          </div>
+        `;
+        root.appendChild(section);
+      });
+    })();
+  </script>
 </body>
 </html>
