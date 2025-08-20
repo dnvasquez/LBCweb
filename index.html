@@ -88,63 +88,58 @@
     .hero-points span{ display:inline-flex; gap:.5rem; align-items:center }
     .dot{ width:.55rem; height:.55rem; border-radius:999px; background:linear-gradient(135deg,var(--brand),var(--brand-2)) }
 
-    /* Features “Por qué LBC” */
-    /* Features “Por qué LBC” */
+   /* Features “Por qué LBC” */
 .features {
   grid-template-columns: repeat(3, 1fr);
   margin-top: 14px;
 }
 
 .feature {
-  /* Eliminamos el fondo y la sombra */
   background: transparent;
   border: 0;
   box-shadow: none;
-  padding: 0 28px; /* Espacio para que el texto no toque las líneas */
-  text-align: center; /* Centramos todo el contenido */
+  padding: 0 28px;
+  text-align: center;
 }
 
-/* Agregamos la línea separadora a todos menos al último */
 .feature:not(:last-child) {
-  border-right: 1px solid var(--ink); /* Línea color chocolate */
+  border-right: 1px solid var(--ink);
 }
 
 .icon {
-  /* Eliminamos el fondo del ícono y lo centramos */
   background: transparent;
   border: 0;
-  margin: 0 auto 12px; /* Centra el ícono horizontalmente y le da espacio abajo */
+  margin: 0 auto 12px;
   width: 42px;
   height: 42px;
 }
 
 .feature h3 {
   margin: .1rem 0 .5rem;
-  font-size: 1.1rem; /* Un poco más grande para que destaque */
+  font-size: 1.1rem;
   color: var(--ink-strong);
 }
 
 .feature p {
-  color: var(--ink); /* Aseguramos que el texto sea color chocolate */
+  color: var(--ink);
   margin: 0;
-  font-size: 0.95rem; /* Un poco más pequeño para mejor balance */
+  font-size: 0.95rem;
 }
 
-/* En pantallas pequeñas, quitamos los bordes y el espacio extra */
 @media (max-width: 768px) {
   .features {
     grid-template-columns: 1fr;
   }
   .feature {
     padding: 0;
-    text-align: left; /* Alineamos a la izquierda en móvil */
+    text-align: left;
   }
   .feature:not(:last-child) {
     border-right: 0;
-    padding-bottom: 24px; /* Añadimos espacio vertical entre items */
+    padding-bottom: 24px;
   }
   .icon {
-    margin: 0 0 8px; /* Alineamos el ícono a la izquierda */
+    margin: 0 0 8px;
   }
 }
 
@@ -283,7 +278,7 @@
 
   <article class="feature">
     <div class="icon" aria-hidden="true">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4E2F22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="9" y1="15" x2="15" y2="15"></line><line x1="9" y1="11" x2="15" y2="11"></line></svg>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4E2F22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="m9 15 2 2 4-4"></path></svg>
     </div>
     <h3>Cumplimiento normativo</h3>
     <p>Te guiamos en cada etapa para obtener certificaciones clave y aprobar auditorías con éxito. Diseñamos planes de acción y te acompañamos para garantizar que tu operación cumpla con todos los estándares exigidos.</p>
