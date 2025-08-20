@@ -660,3 +660,24 @@ hr.sep{border:0;border-top:1px solid var(--border);margin:10px 0 20px}
     border-radius: 0;
     padding: 0.5rem 0; /* Ajusta el padding para que no se vea cortado */
 }
+
+/* Asegúrate de reemplazar '.contenedor-de-features' 
+  con el selector real del contenedor padre que estés usando.
+*/
+.contenedor-de-features {
+  display: flex;         /* Activa el modelo de caja flexible */
+  align-items: flex-start; /* ¡Esta es la línea clave! Alinea los items al inicio (arriba) */
+  flex-wrap: wrap;       /* Permite que los elementos pasen a la siguiente línea si no caben */
+  gap: 20px;             /* Opcional: añade un espacio entre los artículos */
+}
+
+/* Adicionalmente, es una buena práctica asegurar que los artículos 
+  puedan crecer y ocupar el espacio.
+*/
+.feature {
+  /* Aquí puedes definir el ancho de cada artículo. 
+    Por ejemplo, para que haya 3 por fila:
+    flex-basis: calc(33.333% - 20px); 
+  */
+  flex-grow: 1;
+}
