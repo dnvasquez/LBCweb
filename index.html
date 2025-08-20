@@ -9,7 +9,17 @@
   <link rel="stylesheet" href="assets/site.css" />
 
   <style>
-    /* HERO mejorado */
+    /* Estilo para degradado de imagen en Hero */
+.hero .hero-card {
+  /* 1. Crea la máscara con un degradado lineal */
+  /* La imagen será transparente a la izquierda y 100% visible (negro) a la derecha */
+  mask-image: linear-gradient(to right, transparent 5%, black 50%);
+  -webkit-mask-image: linear-gradient(to right, transparent 5%, black 50%); /* Para compatibilidad */
+
+  /* 2. Mueve la imagen hacia la izquierda para que se superponga con el texto */
+  margin-left: -150px; /* ¡Puedes ajustar este valor! */
+}
+        /* HERO mejorado */
     .hero{
       padding: 84px 0 44px;
       position: relative;
