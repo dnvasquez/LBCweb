@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nosotros — LBC Consultores Ambientales</title>
+  <title>Nosotros v2 — LBC Consultores Ambientales</title>
   <link rel="icon" href="assets/favicon.png" />
   <link rel="stylesheet" href="assets/site.css" />
   <style>
@@ -14,13 +14,79 @@
     .team-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .team-grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-    /* Ocultar la barra de acento para un look más minimalista */
-    .accent-bar {
-        display: none;
-    }
-
     @media (max-width: 980px) {
         .team-grid { grid-template-columns: 1fr; }
+    }
+
+    /* --- ESTILOS NUEVOS PARA DIRECTIVA --- */
+    .directiva-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .directiva-card .portrait-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+
+    .directiva-card:hover .portrait-img {
+      filter: grayscale(0%);
+      transform: scale(1.05);
+    }
+
+    .directiva-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.2rem 1rem;
+      background: linear-gradient(to top, rgba(12, 56, 84, 0.85) 0%, rgba(12, 56, 84, 0) 100%);
+      color: #fff;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      text-align: left;
+    }
+
+    .directiva-card:hover .directiva-info {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .directiva-info .name {
+      font-weight: 800;
+      font-size: 1.15rem;
+      margin: 0 0 0.1rem;
+      color: #fff;
+    }
+
+    .directiva-info .role {
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .directiva-info .bio,
+    .directiva-info .tags {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+     .directiva-info .tag {
+      display: inline-block;
+      margin: 0.25rem 0.25rem 0 0;
+      padding: 0.25rem 0.5rem;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 8px;
+      font-size: .82rem;
     }
   </style>
 </head>
@@ -88,13 +154,6 @@
   <script src="assets/site.js"></script>
 
   <script>
-    /*
-      Pega tu listado real aquí.
-      - name, role, group: "directiva" | "tecnico" | "colaboradores"
-      - skills: [...]
-      - bio: string
-      - photo: ruta (recomendado para los primeros 8: 3 directiva + 5 técnico)
-    */
     window.LBC_TEAM = [
       // ---- DIRECTIVA (3) ----
       { name:"Camilo López", role:"Director Operativo", group:"directiva", skills:["Monitoreo","Línea base"], bio:"Ing. Agrónomo (PUC)", photo:"assets/team/directiva-1.jpg" },
@@ -113,7 +172,6 @@
       { name:"Colaborador/a 2", role:"Especialidad", group:"colaboradores", skills:["Asesoría"], bio:"" },
       { name:"Colaborador/a 3", role:"Especialidad", group:"colaboradores", skills:["Asesoría"], bio:"" },
       { name:"Colaborador/a 4", role:"Especialidad", group:"colaboradores", skills:["Asesoría"], bio:"" }
-      // ... añade los demás
     ];
 
     // ------- Render UI -------
@@ -127,36 +185,33 @@
         { key:"colaboradores", title:"Red de colaboradores", colsClass:"cols-2" }
       ];
 
-      // contador global para forzar foto en los primeros 8 (directiva+tecnico)
-      let globalIndex = 0;
-
       const esc = s => (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
       const initials = name => (name||"LBC").split(" ").slice(0,2).map(w=>w[0]||"").join("").toUpperCase();
 
-      function mediaFor(p, mustHavePhoto, big=false){
-        const alt = `Foto — ${esc(p.name)}`;
-        if (p.photo || mustHavePhoto){
-          const src = p.photo || `https://dummyimage.com/800x1000/102B49/DDE9F6&text=${encodeURIComponent(initials(p.name))}`;
-          return big
-            ? `<img class="portrait-img" alt="${alt}" src="${src}">`
-            : `<img class="avatar" alt="${alt}" src="${src}">`;
-        }
-        // fallback por iniciales
-        return big
-          ? `<div class="portrait-img" style="display:grid;place-items:center;background:linear-gradient(135deg,#102B49,#14375E);font-weight:800;font-size:1.6rem;color:#DDE9F6">${initials(p.name)}</div>`
-          : `<div class="avatar-fallback" aria-label="Avatar — ${esc(p.name)}">${initials(p.name)}</div>`;
-      }
-
-      function portraitCard(p, group){
-        globalIndex++;
-        const mustHavePhoto = globalIndex <= 8;
+      function directivaCard(p) {
+        const src = p.photo || `https://dummyimage.com/800x1000/102B49/DDE9F6&text=${encodeURIComponent(initials(p.name))}`;
         const skills = (p.skills||[]).map(s=>`<span class="tag">${esc(s)}</span>`).join("");
-        const barClass = group === "directiva" ? "directiva" : "tecnico";
+
+        return `
+          <article class="directiva-card">
+            <img class="portrait-img" alt="Foto — ${esc(p.name)}" src="${src}">
+            <div class="directiva-info">
+              <h3 class="name">${esc(p.name)}</h3>
+              <p class="role">${esc(p.role)}</p>
+              <p class="bio">${esc(p.bio)}</p>
+              <div class="tags">${skills}</div>
+            </div>
+          </article>
+        `;
+      }
+      
+      function portraitCard(p){
+        const src = p.photo || `https://dummyimage.com/800x1000/102B49/DDE9F6&text=${encodeURIComponent(initials(p.name))}`;
+        const skills = (p.skills||[]).map(s=>`<span class="tag">${esc(s)}</span>`).join("");
         return `
           <article class="portrait-card">
             <div class="portrait-media">
-              ${mediaFor(p, mustHavePhoto, true)}
-              <div class="accent-bar ${barClass}"></div>
+              <img class="portrait-img" alt="Foto — ${esc(p.name)}" src="${src}">
             </div>
             <div class="portrait-body">
               <h3 class="portrait-name">${esc(p.name)}</h3>
@@ -172,7 +227,7 @@
         const skills = (p.skills||[]).map(s=>`<span class="tag">${esc(s)}</span>`).join("");
         return `
           <article class="card team-card">
-            ${mediaFor(p, false, false)}
+             <div class="avatar-fallback" aria-label="Avatar — ${esc(p.name)}">${initials(p.name)}</div>
             <div>
               <h3 style="margin:.1rem 0 .2rem">${esc(p.name)}</h3>
               <p class="role">${esc(p.role||"")}</p>
@@ -188,10 +243,20 @@
         if(!items.length) return;
 
         const section = document.createElement('section');
+        let content;
+
+        if (g.key === 'directiva') {
+          content = items.map(p => directivaCard(p)).join("");
+        } else if (g.key === 'tecnico') {
+          content = items.map(p => portraitCard(p)).join("");
+        } else {
+          content = items.map(p => compactCard(p)).join("");
+        }
+
         section.innerHTML = `
-          <h3 class="team-title">${g.title}</h3>
+          <h2 class="team-title">${g.title}</h2>
           <div class="team-grid ${g.colsClass}">
-            ${items.map(p => (g.key === "directiva" || g.key === "tecnico") ? portraitCard(p, g.key) : compactCard(p)).join("")}
+            ${content}
           </div>
         `;
         root.appendChild(section);
