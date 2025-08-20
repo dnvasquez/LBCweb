@@ -20,24 +20,24 @@
   -webkit-mask-image: linear-gradient(to right, transparent 5%, black 50%);
   margin-left: -150px;
 }
-/* Estilo para la grilla de 4 tarjetas de servicios */
+/* Grilla de 4 columnas */
 .cards-four-cols {
   grid-template-columns: repeat(4, 1fr);
+  gap: 20px; /* Espacio entre tarjetas */
 }
 
-/* Ajuste para pantallas medianas (tablets) */
 @media (max-width: 1024px) {
   .cards-four-cols {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Ajuste para pantallas pequeñas (móviles) */
 @media (max-width: 640px) {
   .cards-four-cols {
     grid-template-columns: 1fr;
   }
 }
+
     /* --- Carrusel de Logos de Clientes --- */
 .logo-scroller {
   overflow: hidden;
@@ -183,21 +183,71 @@
   color: #F2E6DC; /* Texto secundario más suave */
 }
     
-    /* Servicios destacados renovados */
-    .service-card{
-      display:grid; gap:10px;
-      background:linear-gradient(180deg,#0f231d,#0b1c17);
-      border:1px solid #173b31; border-radius:var(--radius);
-      padding:18px; box-shadow:var(--shadow);
-      transition: transform .15s ease, border-color .15s ease;
-    }
-    .service-card:hover{ transform: translateY(-2px); border-color:#1f6b59 }
-    .service-head{ display:flex; align-items:center; justify-content:space-between; gap:12px }
-    .service-head h3{ margin:0; font-size:1.1rem }
-    .pill{ font-size:.78rem; padding:.2rem .5rem; border-radius:999px; border:1px solid #1c3f34; color:var(--text-dim); background:#0c1f19 }
-    .list{ margin:.3rem 0 0; padding:0; list-style:none; color:var(--text-dim); font-size:.98rem }
-    .list li{ display:flex; gap:.6rem; align-items:flex-start; margin:.25rem 0 }
-    .check{ width:.9rem; height:.9rem; margin-top:.2rem; border-radius:3px; background:linear-gradient(135deg,var(--brand),var(--brand-2)) }
+    /* --- Servicios Clave Mejorados --- */
+.service-card {
+  /* Diseño base de la tarjeta */
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: 0 8px 20px rgba(20, 12, 8, .06);
+  display: flex; /* Usamos flexbox para alinear el botón al final */
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efecto al pasar el cursor */
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(20, 12, 8, .1);
+}
+
+.service-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.service-head h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--ink-strong);
+}
+
+.service-card .list {
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ink-dim);
+  font-size: .95rem;
+  flex-grow: 1; /* Empuja el botón hacia abajo */
+}
+
+.service-card .list li {
+  display: flex;
+  gap: .7rem;
+  align-items: flex-start;
+  margin-bottom: .5rem;
+}
+
+.service-card .list .check-icon {
+  width: 16px;
+  height: 16px;
+  margin-top: 4px;
+  color: var(--brand); /* Usa el color de acento de la marca */
+}
+
+/* El botón ahora es más prominente */
+.service-card .btn {
+  width: 100%;
+  justify-content: center;
+  background: var(--paper-2);
+}
+.service-card .btn:hover {
+  background: var(--paper);
+  color: var(--ink-strong);
+}
 
     /* Proceso */
     .process{ counter-reset:step; display:grid; gap:12px; grid-template-columns: repeat(4, minmax(0,1fr)); }
@@ -386,15 +436,24 @@
       <p class="muted">Integramos ciencia aplicada, tecnología y gestión para acelerar permisos, reducir riesgos y maximizar impacto positivo.</p>
 
       <div class="grid cards cards-four-cols" style="margin-top:12px">
+
   <article class="service-card">
     <div class="service-head">
       <h3>Evaluación y Diagnóstico</h3>
-      <span class="pill">Análisis</span>
     </div>
     <ul class="list">
-      <li><i class="check"></i> Líneas base de flora y fauna</li>
-      <li><i class="check"></i> Estudios de suelo y humedales</li>
-      <li><i class="check"></i> Análisis con teledetección y SIG</li>
+      <li>
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        <span>Líneas base de flora y fauna</span>
+      </li>
+      <li>
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+        <span>Estudios de suelo y humedales</span>
+      </li>
+      <li>
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        <span>Análisis con teledetección y SIG</span>
+      </li>
     </ul>
     <a class="btn btn-ghost" href="servicios.html#evaluamos">Conoce más →</a>
   </article>
@@ -402,12 +461,20 @@
   <article class="service-card">
     <div class="service-head">
       <h3>Planificación y Diseño</h3>
-      <span class="pill">Estrategia</span>
     </div>
     <ul class="list">
-      <li><i class="check"></i> Planes de manejo y conservación</li>
-      <li><i class="check"></i> Diseño de restauración ecológica</li>
-      <li><i class="check"></i> Proyectos de áreas verdes</li>
+      <li>
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+        <span>Planes de manejo y conservación</span>
+      </li>
+       <li>
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l-10 10-2-2"></path><path d="M21 21l-10-10-2.5 2.5"></path></svg>
+        <span>Diseño de restauración ecológica</span>
+      </li>
+      <li>
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01"></path><path d="M2.49 15.49h.01"></path><path d="M21.51 15.49h.01"></path><path d="M6.34 6.34h.01"></path><path d="M17.66 6.34h.01"></path><path d="M4.22 19.78h.01"></path><path d="M19.78 4.22h.01"></path></svg>
+        <span>Proyectos de áreas verdes</span>
+      </li>
     </ul>
     <a class="btn btn-ghost" href="servicios.html#planificamos">Conoce más →</a>
   </article>
@@ -415,12 +482,20 @@
   <article class="service-card">
     <div class="service-head">
       <h3>Ejecución y Obras</h3>
-      <span class="pill">Terreno</span>
     </div>
     <ul class="list">
-      <li><i class="check"></i> Rescate y relocalización de especies</li>
-      <li><i class="check"></i> Obras de restauración y reforestación</li>
-      <li><i class="check"></i> Construcción de eco-jardines</li>
+      <li>
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+        <span>Rescate y relocalización de especies</span>
+      </li>
+      <li>
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        <span>Obras de restauración y reforestación</span>
+      </li>
+      <li>
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+        <span>Construcción de eco-jardines</span>
+      </li>
     </ul>
     <a class="btn btn-ghost" href="servicios.html#ejecutamos">Conoce más →</a>
   </article>
@@ -428,12 +503,20 @@
   <article class="service-card">
     <div class="service-head">
       <h3>Asesoría y Cumplimiento</h3>
-      <span class="pill">Gestión</span>
     </div>
     <ul class="list">
-      <li><i class="check"></i> Gestión de permisos (SEIA)</li>
-      <li><i class="check"></i> Soporte en auditorías y certificaciones</li>
-      <li><i class="check"></i> Instrumentos de conservación</li>
+      <li>
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+        <span>Gestión de permisos (SEIA)</span>
+      </li>
+      <li>
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        <span>Soporte en auditorías y certificaciones</span>
+      </li>
+      <li>
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+        <span>Instrumentos de conservación</span>
+      </li>
     </ul>
     <a class="btn btn-ghost" href="servicios.html#asesoramos">Conoce más →</a>
   </article>
