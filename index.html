@@ -20,7 +20,24 @@
   -webkit-mask-image: linear-gradient(to right, transparent 5%, black 50%);
   margin-left: -150px;
 }
+/* Estilo para la grilla de 4 tarjetas de servicios */
+.cards-four-cols {
+  grid-template-columns: repeat(4, 1fr);
+}
 
+/* Ajuste para pantallas medianas (tablets) */
+@media (max-width: 1024px) {
+  .cards-four-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Ajuste para pantallas pequeñas (móviles) */
+@media (max-width: 640px) {
+  .cards-four-cols {
+    grid-template-columns: 1fr;
+  }
+}
     /* --- Carrusel de Logos de Clientes --- */
 .logo-scroller {
   overflow: hidden;
@@ -368,58 +385,59 @@
       <h2>Servicios clave para tu proyecto</h2>
       <p class="muted">Integramos ciencia aplicada, tecnología y gestión para acelerar permisos, reducir riesgos y maximizar impacto positivo.</p>
 
-      <div class="grid cards" style="margin-top:12px">
-        <article class="service-card">
-          <div class="service-head">
-            <h3>Estudios de flora, fauna y hábitat</h3>
-            <span class="pill">Biodiversidad</span>
-          </div>
-          <ul class="list">
-            <li><i class="check"></i> Línea base y monitoreo (transectos, cámaras trampa)</li>
-            <li><i class="check"></i> Índices e interpretación (Shannon, Simpson)</li>
-            <li><i class="check"></i> Medidas de manejo y restauración</li>
-          </ul>
-          <div class="bar" aria-label="Rapidez de ejecución">
-            <span class="muted" style="min-width:110px">Rapidez</span>
-            <span class="bar-track"><i class="bar-fill" style="width:88%"></i></span>
-          </div>
-          <a class="btn btn-ghost" href="servicios.html#biodiversidad">Conoce más →</a>
-        </article>
+      <div class="grid cards cards-four-cols" style="margin-top:12px">
+  <article class="service-card">
+    <div class="service-head">
+      <h3>Evaluación y Diagnóstico</h3>
+      <span class="pill">Análisis</span>
+    </div>
+    <ul class="list">
+      <li><i class="check"></i> Líneas base de flora y fauna</li>
+      <li><i class="check"></i> Estudios de suelo y humedales</li>
+      <li><i class="check"></i> Análisis con teledetección y SIG</li>
+    </ul>
+    <a class="btn btn-ghost" href="servicios.html#evaluamos">Conoce más →</a>
+  </article>
 
-        <article class="service-card">
-          <div class="service-head">
-            <h3>Cartografía y análisis espacial</h3>
-            <span class="pill">SIG & Modelación</span>
-          </div>
-          <ul class="list">
-            <li><i class="check"></i> Zonificaciones ecológicas y corredores</li>
-            <li><i class="check"></i> MCE, escenarios y series temporales</li>
-            <li><i class="check"></i> Dashboards y trazabilidad</li>
-          </ul>
-          <div class="bar" aria-label="Impacto en decisiones">
-            <span class="muted" style="min-width:110px">Impacto</span>
-            <span class="bar-track"><i class="bar-fill" style="width:92%"></i></span>
-          </div>
-          <a class="btn btn-ghost" href="servicios.html#sig">Conoce más →</a>
-        </article>
+  <article class="service-card">
+    <div class="service-head">
+      <h3>Planificación y Diseño</h3>
+      <span class="pill">Estrategia</span>
+    </div>
+    <ul class="list">
+      <li><i class="check"></i> Planes de manejo y conservación</li>
+      <li><i class="check"></i> Diseño de restauración ecológica</li>
+      <li><i class="check"></i> Proyectos de áreas verdes</li>
+    </ul>
+    <a class="btn btn-ghost" href="servicios.html#planificamos">Conoce más →</a>
+  </article>
 
-        <article class="service-card">
-          <div class="service-head">
-            <h3>Cumplimiento y certificaciones</h3>
-            <span class="pill">Gestión</span>
-          </div>
-          <ul class="list">
-            <li><i class="check"></i> Gap analysis y planes de acción</li>
-            <li><i class="check"></i> Registros, procedimientos y auditorías</li>
-            <li><i class="check"></i> GlobalG.A.P., LEAF, Rainforest Alliance</li>
-          </ul>
-          <div class="bar" aria-label="Reducción de riesgo">
-            <span class="muted" style="min-width:110px">Riesgo</span>
-            <span class="bar-track"><i class="bar-fill" style="width:84%"></i></span>
-          </div>
-          <a class="btn btn-ghost" href="servicios.html#cumplimiento">Conoce más →</a>
-        </article>
-      </div>
+  <article class="service-card">
+    <div class="service-head">
+      <h3>Ejecución y Obras</h3>
+      <span class="pill">Terreno</span>
+    </div>
+    <ul class="list">
+      <li><i class="check"></i> Rescate y relocalización de especies</li>
+      <li><i class="check"></i> Obras de restauración y reforestación</li>
+      <li><i class="check"></i> Construcción de eco-jardines</li>
+    </ul>
+    <a class="btn btn-ghost" href="servicios.html#ejecutamos">Conoce más →</a>
+  </article>
+
+  <article class="service-card">
+    <div class="service-head">
+      <h3>Asesoría y Cumplimiento</h3>
+      <span class="pill">Gestión</span>
+    </div>
+    <ul class="list">
+      <li><i class="check"></i> Gestión de permisos (SEIA)</li>
+      <li><i class="check"></i> Soporte en auditorías y certificaciones</li>
+      <li><i class="check"></i> Instrumentos de conservación</li>
+    </ul>
+    <a class="btn btn-ghost" href="servicios.html#asesoramos">Conoce más →</a>
+  </article>
+</div>
     </div>
   </section>
 
