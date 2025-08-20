@@ -88,7 +88,7 @@ header.nav{
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
 .logo{display:flex;align-items:center;gap:.75rem;font-weight:800;letter-spacing:.2px}
-.logo img{width:auto;height:60px;border-radius:0px}
+.logo img{width:auto;height:70px;border-radius:0px}
 .menu{display:flex;gap:.8rem;align-items:center}
 .menu a{padding:.6rem .9rem;border-radius:999px;color:var(--ink-dim)}
 .menu a:hover{background:var(--paper-2);color:var(--ink)}
