@@ -291,32 +291,6 @@ hr.sep{border:0;border-top:1px solid var(--border);margin:10px 0 20px}
 .hero-points span{ color: var(--ink) }
 .dot{ background: var(--brand-blue) }
 
-/* --- SECCIÓN “¿Por qué elegir LBC?”: paneles oscuros accesibles --- */
-/* Aplica a tarjetas de features/servicios (si existen esas clases) */
-.features .card,
-.feature,
-.service-card{
-  background: var(--panel);
-  border:1px solid var(--panel-border);
-  color: var(--on-panel);
-  box-shadow: 0 14px 30px rgba(1, 28, 24, .24);
-}
-.features .card h3,
-.feature h3,
-.service-card h3{ color: var(--on-panel) }
-
-.features .card p,
-.feature p,
-.service-card p,
-.features .list,
-.service-card .list{ color: var(--on-panel-dim) }
-
-.features .icon{ 
-  background: linear-gradient(135deg, var(--panel-2), var(--panel));
-  border:1px solid var(--panel-border);
-}
-.check{ background: linear-gradient(135deg, var(--brand), var(--brand-2)) }
-
 /* --- tarjetas generales en el resto del sitio: claras y legibles --- */
 .cards:not(.features) .card{
   background: var(--surface);
