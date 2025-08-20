@@ -10,7 +10,13 @@
 
   <style>
     /* Estilo para degradado de imagen en Hero */
+/* Estilo para degradado de video/imagen en Hero */
 .hero .hero-card {
+  /* --- AJUSTES NUEVOS --- */
+  height: 100%;         /* 1. Fuerza al contenedor a ocupar todo el alto */
+  border-radius: 0;     /* 2. Elimina los bordes redondeados */
+
+  /* --- ESTILOS ANTERIORES --- */
   mask-image: linear-gradient(to right, transparent 5%, black 50%);
   -webkit-mask-image: linear-gradient(to right, transparent 5%, black 50%);
   margin-left: -150px;
