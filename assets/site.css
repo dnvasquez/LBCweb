@@ -332,58 +332,6 @@ hr.sep{border:0;border-top:1px solid var(--border);margin:10px 0 20px}
 }
 
 /* =========================================================
-   CONTROL DE COLOR/TRANSPARENCIA DE RECUADROS (PANELES)
-   ========================================================= */
-
-/* 1) Ajusta aquí el color base y la transparencia global de los paneles */
-:root{
-  /* Color del panel en RGB (ej. teal profundo) */
-  --panel-rgb: 16, 55, 50;      /* <— CAMBIA a tu color (R,G,B) */
-  --panel-alpha: 0.92;          /* <— 0 = transparente, 1 = sólido */
-  --panel-border-alpha: 0.30;   /* borde un poco más notorio */
-  --on-panel: #F2FBF8;          /* texto principal en panel */
-  --on-panel-dim: #F2FBF8;      /* texto atenuado en panel */
-}
-
-/* 2) Recuadros de “¿Por qué LBC?” y tarjetas de servicios */
-.features .card,
-.feature,
-.service-card{
-  background: rgba(var(--panel-rgb), var(--panel-alpha)) !important;
-  border: 1px solid rgba(var(--panel-rgb), var(--panel-border-alpha)) !important;
-  color: var(--on-panel) !important;
-  box-shadow: 0 14px 30px rgba(1, 28, 24, .22);
-}
-.features .card h3,
-.feature h3,
-.service-card h3{ color: var(--on-panel) !important; }
-.features .card p,
-.feature p,
-.service-card p,
-.features .list,
-.service-card .list{ color: var(--on-panel-dim) !important; }
-
-/* 3) KPIs (los cuatro bloques con números) */
-.kpis .kpi{
-  background: rgba(var(--panel-rgb), var(--panel-alpha)) !important;
-  border: 1px solid rgba(var(--panel-rgb), var(--panel-border-alpha)) !important;
-  color: var(--on-panel) !important;
-}
-.kpis .kpi span{ color: var(--on-panel-dim) !important; }
-
-/* 4) Chips/etiquetas dentro de paneles (para que no queden pálidos) */
-.pill, .tag, .chip{
-  background: rgba(255,255,255,.08) !important;
-  border: 1px solid rgba(255,255,255,.18) !important;
-  color: var(--on-panel) !important;
-}
-
-/* 5) Utilidades por si quieres distintas transparencias por tarjeta */
-.panel-80{ --panel-alpha: .80; }
-.panel-70{ --panel-alpha: .70; }
-/* En HTML: <article class="feature panel-80"> … </article> */
-
-/* =========================================================
    LBC Panels  — Control de steps & FAQ
    ========================================================= */
 
