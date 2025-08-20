@@ -11,13 +11,9 @@
   <style>
     /* Estilo para degradado de imagen en Hero */
 .hero .hero-card {
-  /* 1. Crea la máscara con un degradado lineal */
-  /* La imagen será transparente a la izquierda y 100% visible (negro) a la derecha */
   mask-image: linear-gradient(to right, transparent 5%, black 50%);
-  -webkit-mask-image: linear-gradient(to right, transparent 5%, black 50%); /* Para compatibilidad */
-
-  /* 2. Mueve la imagen hacia la izquierda para que se superponga con el texto */
-  margin-left: -150px; /* ¡Puedes ajustar este valor! */
+  -webkit-mask-image: linear-gradient(to right, transparent 5%, black 50%);
+  margin-left: -150px;
 }
         /* HERO mejorado */
     .hero{
@@ -163,9 +159,12 @@
         </div>
       </div>
 
-      <figure class="hero-card" style="padding:0;overflow:hidden">
-        <img src="https://lbconservation.org/wp-content/uploads/2023/09/DJI_0432-1536x1152.jpg" alt="Paisaje trabajado por LBC" />
-      </figure>
+      <figure class="hero-card" style="padding:0; overflow:hidden;">
+  <video autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover;">
+    <source src="assets/lbc-video.mp4" type="video/mp4">
+    Tu navegador no soporta el tag de video.
+  </video>
+</figure>
     </div>
   </section>
 
