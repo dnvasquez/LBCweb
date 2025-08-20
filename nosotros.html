@@ -18,15 +18,15 @@
         .team-grid { grid-template-columns: 1fr; }
     }
 
-    /* --- ESTILOS NUEVOS PARA DIRECTIVA --- */
-    .directiva-card {
+    /* --- ESTILOS PARA TARJETAS INTERACTIVAS (DIRECTIVA Y TÉCNICO) --- */
+    .interactive-portrait-card {
       position: relative;
       overflow: hidden;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
 
-    .directiva-card .portrait-img {
+    .interactive-portrait-card .portrait-img {
       width: 100%;
       aspect-ratio: 4/5;
       object-fit: cover;
@@ -35,12 +35,12 @@
       transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
 
-    .directiva-card:hover .portrait-img {
+    .interactive-portrait-card:hover .portrait-img {
       filter: grayscale(0%);
       transform: scale(1.05);
     }
 
-    .directiva-info {
+    .interactive-portrait-info {
       position: absolute;
       bottom: 0;
       left: 0;
@@ -54,32 +54,32 @@
       text-align: left;
     }
 
-    .directiva-card:hover .directiva-info {
+    .interactive-portrait-card:hover .interactive-portrait-info {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .directiva-info .name {
+    .interactive-portrait-info .name {
       font-weight: 800;
       font-size: 1.15rem;
       margin: 0 0 0.1rem;
       color: #fff;
     }
 
-    .directiva-info .role {
+    .interactive-portrait-info .role {
       font-weight: 600;
       font-size: 1rem;
       margin: 0;
       color: rgba(255, 255, 255, 0.9);
     }
 
-    .directiva-info .bio,
-    .directiva-info .tags {
+    .interactive-portrait-info .bio,
+    .interactive-portrait-info .tags {
       font-size: 0.9rem;
       margin-top: 0.5rem;
       color: rgba(255, 255, 255, 0.85);
     }
-     .directiva-info .tag {
+     .interactive-portrait-info .tag {
       display: inline-block;
       margin: 0.25rem 0.25rem 0 0;
       padding: 0.25rem 0.5rem;
@@ -188,36 +188,18 @@
       const esc = s => (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
       const initials = name => (name||"LBC").split(" ").slice(0,2).map(w=>w[0]||"").join("").toUpperCase();
 
-      function directivaCard(p) {
+      function interactivePortraitCard(p) {
         const src = p.photo || `https://dummyimage.com/800x1000/102B49/DDE9F6&text=${encodeURIComponent(initials(p.name))}`;
         const skills = (p.skills||[]).map(s=>`<span class="tag">${esc(s)}</span>`).join("");
 
         return `
-          <article class="directiva-card">
+          <article class="interactive-portrait-card">
             <img class="portrait-img" alt="Foto — ${esc(p.name)}" src="${src}">
-            <div class="directiva-info">
+            <div class="interactive-portrait-info">
               <h3 class="name">${esc(p.name)}</h3>
               <p class="role">${esc(p.role)}</p>
               <p class="bio">${esc(p.bio)}</p>
               <div class="tags">${skills}</div>
-            </div>
-          </article>
-        `;
-      }
-      
-      function portraitCard(p){
-        const src = p.photo || `https://dummyimage.com/800x1000/102B49/DDE9F6&text=${encodeURIComponent(initials(p.name))}`;
-        const skills = (p.skills||[]).map(s=>`<span class="tag">${esc(s)}</span>`).join("");
-        return `
-          <article class="portrait-card">
-            <div class="portrait-media">
-              <img class="portrait-img" alt="Foto — ${esc(p.name)}" src="${src}">
-            </div>
-            <div class="portrait-body">
-              <h3 class="portrait-name">${esc(p.name)}</h3>
-              <p class="role">${esc(p.role||"")}</p>
-              <div class="tags">${skills}</div>
-              ${p.bio ? `<p class="bio">${esc(p.bio)}</p>` : ""}
             </div>
           </article>
         `;
@@ -245,10 +227,8 @@
         const section = document.createElement('section');
         let content;
 
-        if (g.key === 'directiva') {
-          content = items.map(p => directivaCard(p)).join("");
-        } else if (g.key === 'tecnico') {
-          content = items.map(p => portraitCard(p)).join("");
+        if (g.key === 'directiva' || g.key === 'tecnico') {
+          content = items.map(p => interactivePortraitCard(p)).join("");
         } else {
           content = items.map(p => compactCard(p)).join("");
         }
